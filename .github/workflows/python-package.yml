@@ -28,7 +28,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         python -m pip install flake8 pytest pipenv
-        pipenv install -d
+        pipenv --python `which python3` install -d
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
