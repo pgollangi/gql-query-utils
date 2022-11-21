@@ -1,5 +1,5 @@
 [project]
-name = "gql_query_to_dict"
+name = "gql_query_utils"
 version = "1.0.0"
 authors = [
   { name="Prasanna Kumar Gollangi", email="pgollangi@pm.me" },

@@ -1,8 +1,8 @@
-from src.gql_query_utils import converter
+from src.gql_query_utils.utils import query_to_dict
 
 
 def test_query_simple_fields():
-    result = converter.query_to_json("""
+    result = query_to_dict("""
         {
             a
             b
@@ -12,7 +12,7 @@ def test_query_simple_fields():
 
 
 def test_query_field_sets():
-    result = converter.query_to_json("""
+    result = query_to_dict("""
         {
             a
             b {
@@ -24,7 +24,7 @@ def test_query_field_sets():
 
 
 def test_query_field_arguments():
-    result = converter.query_to_json("""
+    result = query_to_dict("""
         query {
             a
             b (id: 50) {
