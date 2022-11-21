@@ -1,6 +1,6 @@
 [project]
 name = "gql_query_utils"
-version = "1.0.0"
+version = "1.0.1"
 authors = [
   { name="Prasanna Kumar Gollangi", email="pgollangi@pm.me" },
 ]
