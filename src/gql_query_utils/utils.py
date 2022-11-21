@@ -42,7 +42,30 @@ def _node_to_dict(node: ast.Node) -> dict:
         return {field.name.value: value}
     elif node.kind == "argument":
         arg: ast.ArgumentNode = node
-        return {arg.name.value: arg.value.value}
+        return {arg.name.value: _node_to_dict(arg.value)}
+    elif node.kind == "string_value" \
+            or node.kind == "int_value" \
+            or node.kind == "float_value"\
+            or node.kind == "boolean_value":
+        s_val: ast.StringValueNode = node
+        return s_val.value
+    elif node.kind == "list_value":
+        l_val: ast.ListValueNode = node
+        value = []
+        for val in l_val.values:
+            value.append(_node_to_dict(val))
+        return value
+    elif node.kind == "object_value":
+        o_val: ast.ObjectValueNode = node
+        value = {}
+        for field in o_val.fields:
+            value = {**value, **_node_to_dict(field)}
+        return value
+    elif node.kind == "object_field":
+        o_field: ast.ObjectFieldNode = node
+        return {o_field.name.value: _node_to_dict(o_field.value)}
+    else:
+        print(node.to_dict())
 
 
 def query_to_dict(query: str) -> dict:

@@ -33,3 +33,27 @@ def test_query_field_arguments():
         }
     """)
     assert result == {'query': {'a': True, 'b': {'c': True, '__args': {'id': '50'}}}}
+
+
+def test_field_args_lists():
+    result = query_to_dict("""
+            query {
+                a
+                b (id: ["50"]) {
+                    c
+                }
+            }
+        """)
+    assert result == {'query': {'a': True, 'b': {'c': True, '__args': {'id': ['50']}}}}
+
+
+def test_field_args_objects():
+    result = query_to_dict("""
+                query {
+                    a
+                    b (name: {first: "50"}) {
+                        c
+                    }
+                }
+            """)
+    assert result == {'query': {'a': True, 'b': {'c': True, '__args': {'name': {'first': '50'}}}}}
